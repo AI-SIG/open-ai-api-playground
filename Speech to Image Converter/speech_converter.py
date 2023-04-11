@@ -29,6 +29,8 @@ class SpeechConverter:
             except:
                 # recognize_google() method will throw a request error if the API is unreachable
                 print("[Sorry, I did not get that?! Open ya mouf!]")
+            print("[I heard:]\n" + audio_text)
+            print("[Let's see what that looks like!]")
         return audio_text
 
 

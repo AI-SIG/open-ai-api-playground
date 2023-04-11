@@ -12,7 +12,7 @@ class ImageGenerator:
     @staticmethod
     def generate_image_from_prompt(prompt):
         """
-        Takes a prompt as text and generates an image using Dall-E. The image is stored in a directory called images
+        Takes a prompt as text and generates an image using DALL-E. The image is stored in a directory called images
         as generated_image.png. Might make it fancy later. Might not
         """
         print("[Now generating image...]  \n" + prompt)
@@ -22,16 +22,19 @@ class ImageGenerator:
             os.mkdir(image_dir)
         
         # print(f"{image_dir=}")
+        try:
+            generation_response = openai.Image.create(
+                prompt=prompt,
+                n=3,
+                size="1024x1024",
+                response_format="url",
+            )
+        except:
+            print("[Something went funky. Sorry nê]")    
 
-        generation_response = openai.Image.create(
-            prompt=prompt,
-            n=5,
-            size="1024x1024",
-            response_format="url",
-        )
         # print(generation_response)
 
-        generated_image_name = "" + prompt + ".png" # the filetype should be .png
+        generated_image_name = prompt + ".png" # the filetype should be .png
         generated_image_filepath = os.path.join(image_dir, generated_image_name)
         generated_image_url = generation_response["data"][0]["url"]  # extract image URL from response
         generated_image = requests.get(generated_image_url).content
