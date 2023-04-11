@@ -8,14 +8,14 @@ import constants
 openai.api_key = constants.OPEN_AI_API_KEY
 
 class ImageGenerator:
-    
+
     @staticmethod
     def generate_image_from_prompt(prompt):
         """
         Takes a prompt as text and generates an image using Dall-E. The image is stored in a directory called images
         as generated_image.png. Might make it fancy later. Might not
         """
-        print("[Now generating image...]  " + prompt)
+        print("[Now generating image...]  \n" + prompt)
         image_dir_name = "images"
         image_dir = os.path.join(os.curdir, image_dir_name)
         if not os.path.isdir(image_dir):
@@ -31,7 +31,7 @@ class ImageGenerator:
         )
         # print(generation_response)
 
-        generated_image_name = "generated_image.png" # the filetype should be .png
+        generated_image_name = "" + prompt + ".png" # the filetype should be .png
         generated_image_filepath = os.path.join(image_dir, generated_image_name)
         generated_image_url = generation_response["data"][0]["url"]  # extract image URL from response
         generated_image = requests.get(generated_image_url).content
