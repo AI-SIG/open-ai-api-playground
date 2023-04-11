@@ -1,0 +1,5 @@
+# Install python-pip
+# Use pip freeze > requirements.txt to generate dependencies list
+# Use pip install -r requirements.txt to install all dependencies.
+
+
