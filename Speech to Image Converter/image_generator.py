@@ -17,6 +17,13 @@ class ImageGenerator:
         
         print(f"{image_dir=}")
 
+        generation_response = openai.Image.create(
+            prompt=prompt,
+            n=1,
+            size="1024x1024",
+            response_format="url",
+        )
+        print(generation_response)
 
-ImageGenerator.generate_image_from_prompt("")
+ImageGenerator.generate_image_from_prompt("The Golden Girls on crack")
 
