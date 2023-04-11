@@ -16,19 +16,19 @@ class SpeechConverter:
         r = sr.Recognizer()
         audio_text = ""
 
-        # listening the speech and store in audio_text variable
+        # listen to speech and store in audio variable
         with sr.Microphone() as source:
             print("[Talk, hooman]")
             audio = r.listen(source)
             print("[Talking time over, thanks hooman]")
 
-            # recognize_google() method will throw a request error if the API is unreachable
+            # convert speech to text with google's libraries
+            # an internet connection is required for this to work
             try:
-                # using google speech recognition
                 audio_text = r.recognize_google(audio)
             except:
+                # recognize_google() method will throw a request error if the API is unreachable
                 print("[Sorry, I did not get that?! Open ya mouf!]")
-        print("Text:  " + audio_text)
         return audio_text
 
 
