@@ -1,9 +1,7 @@
-# For speech recognition
-# pip install SpeechRecognition
-# For accessing mic
-# pip install PyAudio
-
 import speech_recognition as sr
+from speech_recognition.exceptions import WaitTimeoutError
+
+TIMEOUT_SECONDS = 15
 
 class SpeechConverter:
 
@@ -19,7 +17,11 @@ class SpeechConverter:
         # listen to speech and store in audio variable
         with sr.Microphone() as source:
             print("[Talk, hooman]")
-            audio = r.listen(source)
+            try:
+                audio = r.listen(source, timeout=TIMEOUT_SECONDS)
+            except WaitTimeoutError:
+                print("[Listening timed out. Please check your audio device and try again]")
+                return
             print("[Talking time over, thanks hooman]")
 
             # convert speech to text with google's libraries
