@@ -28,7 +28,7 @@ class ImageGenerator:
         try:
             generation_response = openai.Image.create(
                 prompt=prompt,
-                n=3,
+                n=1,
                 size="1024x1024",
                 response_format="url",
             )
@@ -44,7 +44,6 @@ class ImageGenerator:
         except:
             print("[Something went funky. Sorry nê]")    
 
-        # print(generation_response)
 
 
 # ImageGenerator.generate_image_from_prompt("The Golden Girls on crack")
